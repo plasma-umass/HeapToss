@@ -1,10 +1,14 @@
 HeapToss
 --------
-HeapToss is an LLVM compiler pass that tries to find stack variables that escape the declaring function's context. This can happen in many ways, such as:
+HeapToss is an LLVM compiler pass that identifies stack variables that may escape the declaring function's context, and moves them ("tosses" them) into the heap. This can happen in many ways, such as:
 
 * Passing a pointer or reference to that variable to a function call
 * Writing a pointer or reference to that variable to a globally-accessible location (the heap, global variables, etc).
 * Writing a pointer or reference to that variable into another structure that escapes.
+
+It batches tosses, so it will calls ```malloc``` and ```free``` at most once per function call. Batch tossing can be toggled with a macro or a parameter to ```opt```.
+
+Note that we currently do not support calls to the ```alloca``` function, which dynamically allocates variables on the stack.
 
 Prerequisites
 =============
