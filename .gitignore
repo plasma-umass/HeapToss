@@ -1,0 +1,19 @@
+*.sublime*
+# Ignore autoconf changes
+autoconf/configure.ac
+autoconf/configure.bak
+autoconf/aclocal.m4
+autom4te.cache
+configure
+# Ignore files generated from compilation
+config.*
+Makefile.common
+*Release*
+*Debug*
+test/primitives/primitives
+test/structs/structs
+# Vim
+*.swp
+# Macs...
+.DS_Store
+*.DSYM
